@@ -15,16 +15,13 @@ Output : 7
 Explanation :
 One longest palindrome that can be built is "dccaccd", whose length is `7`.
 
-https://leetcode.com/problems/two-sum/
 
-// 思路：暴力解法，对每个数都遍历数组后面的所有数
-// 出现的问题：时间复杂度太高，为O(n^2)
+// 思路：那一个哈希set记录访问过的字符，若有重复则删除，长度l加2。遍历完string后，判断哈希set size是否为0，为0说明全部消完，return l。 
+// 若不为0则长度l加1 (也就是把set里面任何拿一个来做middle）。
 
 
-// 优化思路：One-pass HashMap
-//         HashMap中key为nums数组每个数【被target减去后的剩下的数】，value为这个数在nums数组的位置。
-//         遍历nums数组，先判断HashMap中是否存在nums[i]，如果有，那么说明和nums[i]相加为target的数在前面已经出现过，
-//         因此返回它们的index组成的数组。否则，将target - nums[i]和对应的i放进HashMap。
+// 优化思路：并不需要记录长度l,最后拿string.length()减去set.size()就行了
 // 时间复杂度：O(n)
-// 空间复杂度：O(n)
+// 空间复杂度：O(key)
 
+def 
