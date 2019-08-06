@@ -1,0 +1,111 @@
+
+***
+https://www.jiuzhang.com/solution/longest-palindromic-substring/#tag-highlight-lang-python
+//Description
+
+Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, 
+and there exists one unique longest palindromic substring.
+
+ 
+Example
+Example 1:
+
+Input:"abcdzdcab"
+Output:"cdzdc"
+
+Example 2:
+Input:"aba"
+Output:"aba"
+Challenge
+O(n2) time is acceptable. Can you do it in O(n) time
+
+
+// 思路：中心两指针法. 1. 构建一个helper函数， 用来返回对于一个给定string从中间出发向左右两边走的最大回文字（只有一个）
+//2. MAIN FUN， 一个for loop，选取string里面任何一个位置从中间到两边的返回的最大值
+//3. 注意考虑中间位置可能是一个char，也可能是两个一样的， 所以要call helper 两次
+
+// 优化思路：O(N)
+//使用 Manacher's Algorithm
+//可以在 O(n) 的时间内解决问题
+//参考资料：https://www.felix021.com/blog/read.php?2040
+//现在先不管
+***/
+
+
+def findLongestPalindromicSub(self, s):
+    LongestPal = ""
+    if s==None or len(s) ==0:
+        return LongestPal
+    for middle in range (len(s)):
+        sub = self.returnPalindromicFrom (s, middle, middle)
+        if  len(sub) > len(LongestPal):
+             LongestPal = sub
+        sub = self.returnPalindromicFrom (s, middle, middle+1)
+        if  len(sub) > len(LongestPal):
+             LongestPal = sub   
+    return longestPal
+
+def returnPalindromicFrom (self, s, left, right):
+    left, right = len(s)/2
+    while left >= 0 and  right < len(s) and s[left] == s[right]:
+        left -= 1
+        right +=1 
+    return s[left:right+1]
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+Manacher
+class Solution:
+    """
+    @param s: input string
+    @return: the longest palindromic substring
+    """
+    def longestPalindrome(self, s):
+        if not s:
+            return
+
+        # Using manacher's algorithm
+        # abba => #a#b#b#a#
+        chars = []
+        for c in s:
+            chars.append('#')
+            chars.append(c)
+        chars.append('#')
+        
+        n = len(chars)
+        palindrome = [0] * n
+        palindrome[0] = 1
+        
+        mid, longest = 0, 1
+        for i in range(1, n):
+            length = 1
+            if mid + longest > i:
+                mirror = mid - (i - mid)
+                length = min(palindrome[mirror], mid + longest - i)
+
+            while i + length < len(chars) and i - length >= 0:
+                if chars[i + length] != chars[i - length]:
+                    break;
+                length += 1
+            
+            if length > longest:
+                longest = length
+                mid = i
+            
+            palindrome[i] = length
+        
+        # remove the extra #
+        longest = longest - 1
+        start = (mid - 1) // 2 - (longest - 1) // 2
+        return s[start:start + longest]
