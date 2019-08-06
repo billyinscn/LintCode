@@ -1,0 +1,40 @@
+
+https://www.lintcode.com/problem/implement-strstr/description?_from=ladder&&fromId=1
+Description
+
+For a given source string and a target string, you should output the first index(from 0) of target string in source string.
+
+If target does not exist in source, just return -1.
+
+Example
+Example 1:
+
+Input: source = "source" ，target = "target"
+Output: -1	
+Explanation: If the source does not contain the target content, return - 1.
+Example 2:
+
+Input:source = "abcdabcdefg" ，target = "bcd"
+Output: 1	
+Explanation: If the source contains the target content, return the location where the target first appeared in the source.
+
+Challenge
+O(n2) is acceptable. Can you implement an O(n) algorithm? (hint: KMP)
+
+// 思路：用Python list 的function l（i：i+n）来直接把原来的source里面的string从index开始做一次for循环比较，
+
+
+// 优化思路：KMP, 不用管
+// 时间复杂度：O(n^2), 因为虽然只loop了一次， source[i:i + n] == target 是n个char compare
+// 空间复杂度：N.A.
+
+def StrStr (self, source, target):
+    if source == None or target == None:
+        return -1
+    n = len(target)
+    for i in range (0, len(source-n+1):
+    //string[start:end]: Get all characters from index start to end-1
+        if soure [i:i+n] == target:
+            return i
+    return -1
+        
