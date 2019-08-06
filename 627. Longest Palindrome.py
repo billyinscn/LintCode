@@ -1,4 +1,5 @@
 
+/*** 
 https://www.jiuzhang.com/solution/longest-palindrome/
 
 Question: 
@@ -22,6 +23,37 @@ One longest palindrome that can be built is "dccaccd", whose length is `7`.
 
 // 优化思路：并不需要记录长度l,最后拿string.length()减去set.size()就行了
 // 时间复杂度：O(n)
-// 空间复杂度：O(key)
+// 空间复杂度：O(key_size)
+***/
+               
+def LongestPalidrome (self, str):
+    if len(s) == 0 or "NULL":
+               return NULL
+    l = 0
+    dic = {}
+    for c in str:
+        if c in dic:
+               l += 2
+               del dic[c]
+        else:
+               dic[c] = True
+    if len(dic) == 0:
+               return l 
+    else:
+               return l + 1
+               
+ 
+ //优化思路
+ def LongestPalidrome (self, str):
 
-def 
+    hash = {}
+    for c in str:
+        if c in dic:
+               del dic[c]
+        else:
+               dic[c] = True
+     remove = len(hash)
+        if remove > 0:
+            remove -= 1
+     return len(str) - remove
+               
