@@ -58,37 +58,36 @@ set/seen 与 queue 是一对好基友，无时无刻都一起出现，往 queue 
 
 **************************
 
+思路： 就是一个二位矩阵，从它的每一个元素开始， 如果值是 ‘1’ ，且该位置没有被访问过，那么就调用一个 BFS 即可，借助队列 queue 遍历其周围四个位置，
+若没有越界的话，就将 visited 中该邻居位置标记为 true，终止条件是neighbor中没有一个有值为“1”。这时候把island +1。
+************************
 
-def numIslands(self, grid):
-        if not grid or not grid[0]:
-            return 0
-            
-        islands = 0
-        visited = set()
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):
-                if grid[i][j] and (i, j) not in visited:
-                    self.bfs(grid, i, j, visited)
-                    islands += 1
-                    
-        return islands                    
-    
-    def bfs(self, grid, x, y, visited):
-        queue = deque([(x, y)])
-        visited.add((x, y))
-        while queue:
-            x, y = queue.popleft()
-            for delta_x, delta_y in [(1, 0), (0, -1), (-1, 0), (0, 1)]:
-                next_x = x + delta_x
-                next_y = y + delta_y
-                if not self.is_valid(grid, next_x, next_y, visited):
-                    continue
-                queue.append((next_x, next_y))
-                visited.add((next_x, next_y))
-
-    def is_valid(self, grid, x, y, visited):
-        n, m = len(grid), len(grid[0])
-        return 0 <= x < n and 0 <= y < m and (x, y) not in visited and grid[x][y]
-    
-
+def NumofIsland (self, grid):
+    if not grid or not grid[0]:
+      return 0
+    visited = Set ()
+    island = 0
+    for i in range len(grad):
+        for j in range len(grad[0]):
+            if grad[i][j] and (i,j) is not in visited:
+                self.Bfs (i, j, visited)
+            island += 1
+     return island
+     
+def Bfs (self, grid, x, y, visited):
+    queue = deque (x,y)
+    visited = set (x,y)
+    while queue:
+       x,y = queue.leftpop ()
+       for x_delta, y_delta in [(1, 0), (0, -1), [-1, 0), (0, 1)]:
+          x_next, y_next =  x + x_delta, y + y_delta
+          if not self.valid (x_delta, y_delta):
+            continue
+          set.add ((x_delta, y_delta))
+          queue.append((x_delta, y_delta))
+          
+ def valid (self, grid, x, y, visited):
+     m = len(grid)
+     n = len (grid[0])
+     return 0<=x<m and 0=<y<n and grid[x][y] and (x,y) not in visited
 
