@@ -1,0 +1,94 @@
+
+Description
+
+Given a boolean 2D matrix, 0 is represented as the sea, 1 is represented as the island. If two 1 is adjacent, we consider them in the same island. We only consider up/down/left/right adjacent.
+
+Find the number of islands.
+
+Example
+Example 1:
+
+Input:
+[
+  [1,1,0,0,0],
+  [0,1,0,0,1],
+  [0,0,0,1,1],
+  [0,0,0,0,0],
+  [0,0,0,0,1]
+]
+Output:
+3
+Example 2:
+
+Input:
+[
+  [1,1]
+]
+Output:
+1
+****************************
+// 思路：使用图BFS的模板。
+from collections import deque
+
+queue = deque()
+seen = set()  
+
+seen.add(start)
+queue.append(start)
+while len(queue):
+    head = queue.popleft()
+    for neighbor in head.neighbors:
+        if neighbor not in seen:
+            seen.add(neighbor)
+            queue.append(neighbor)
+            
+上述代码中：
+
+neighbor 表示从某个点 head 出发，可以走到的下一层的节点。
+set/seen 存储已经访问过的节点（已经丢到 queue 里去过的节点）
+queue 存储等待被拓展到下一层的节点
+set/seen 与 queue 是一对好基友，无时无刻都一起出现，往 queue 里新增一个节点，就要同时丢到 set 里。
+
+***********************
+# Definition for a undirected graph node
+# class UndirectedGraphNode:
+#     def __init__(self, x):
+#         self.label = x
+#         self.neighbors = []
+
+**************************
+
+
+def numIslands(self, grid):
+        if not grid or not grid[0]:
+            return 0
+            
+        islands = 0
+        visited = set()
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] and (i, j) not in visited:
+                    self.bfs(grid, i, j, visited)
+                    islands += 1
+                    
+        return islands                    
+    
+    def bfs(self, grid, x, y, visited):
+        queue = deque([(x, y)])
+        visited.add((x, y))
+        while queue:
+            x, y = queue.popleft()
+            for delta_x, delta_y in [(1, 0), (0, -1), (-1, 0), (0, 1)]:
+                next_x = x + delta_x
+                next_y = y + delta_y
+                if not self.is_valid(grid, next_x, next_y, visited):
+                    continue
+                queue.append((next_x, next_y))
+                visited.add((next_x, next_y))
+
+    def is_valid(self, grid, x, y, visited):
+        n, m = len(grid), len(grid[0])
+        return 0 <= x < n and 0 <= y < m and (x, y) not in visited and grid[x][y]
+    
+
+
