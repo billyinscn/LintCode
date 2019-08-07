@@ -1,3 +1,4 @@
+https://www.jiuzhang.com/solution/binary-tree-level-order-traversal/#tag-highlight-lang-python
 Description:
 Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
 Example:
@@ -29,7 +30,26 @@ Challenge 1: Using only 1 queue to implement it.
 Challenge 2: Use BFS algorithm to do it.
 
 ********************************
-思路： BFS 模板， 两个queue，一个存当前的level的，一个存下一个level的。
+思路1：两个queue。 那么便可以使用两个队列来实现这个要求，将属于同一层的结点存放到 q1 列表中，将当前层的下一层结点保存到 q2 当中。这样，
+//首先遍历完 q1 中的所有结点((for node in queue))，将其做为一个列表添加到结果列表中去 ，之后交换 q1 和 q2，并且在将 q2 置为空，继续进行层次遍历，
+//直到二叉树遍历完成
 
 
-def 
+def TreeLevel (self, root):
+    if not root:
+       return None
+    
+    q_cur = [root]
+    result = []
+    while q_cur:
+       q_next = []
+       result.append (node.val for node in q_cur)
+       for node in q_cur:
+           if node.left:
+              q_next.append(node.left)
+           if head.right:
+              q_next.append(node.right)
+       q_cur =  q_next
+     
+    return result
+
