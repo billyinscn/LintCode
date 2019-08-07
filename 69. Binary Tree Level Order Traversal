@@ -29,6 +29,14 @@ Challenge 1: Using only 1 queue to implement it.
 
 Challenge 2: Use BFS algorithm to do it.
 
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+
 ********************************
 思路1：两个queue。 那么便可以使用两个队列来实现这个要求，将属于同一层的结点存放到 q1 列表中，将当前层的下一层结点保存到 q2 当中。这样，
 //首先遍历完 q1 中的所有结点((for node in queue))，将其做为一个列表添加到结果列表中去 ，之后交换 q1 和 q2，并且在将 q2 置为空，继续进行层次遍历，
@@ -51,5 +59,26 @@ def TreeLevel (self, root):
               q_next.append(node.right)
        q_cur =  q_next
      
+    return result
+
+
+*******************************
+思路2： 用一个queue, 把每一层的node都piggyback在后面，每一层一开始就清空。用use queue.popleft() 清理掉该层的node
+
+def TreeLevel(self, root):
+   if root = None:
+       return []
+   queue = deque (root)
+   result =  []
+   while queue:
+      level = []
+      node = queue.popleft()
+      for _ in range (len(queue)):
+          level.append(node.val)
+          if node.left:
+              queue.append(node.left)
+          if node.right:
+              queue.append(node.right)
+       result.append(level)
     return result
 
