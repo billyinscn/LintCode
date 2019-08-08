@@ -2,7 +2,8 @@ Description
 
 There are a total of n courses you have to take, labeled from 0 to n - 1.
 
-Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a pair: [0,1]
+Some courses may have prerequisites, for example to take course 0 you have to first take course 1, which is expressed as a
+pair: [0,1]
 
 Given the total number of courses and a list of prerequisite pairs, is it possible for you to finish all courses?
 
@@ -96,8 +97,8 @@ class Solution:
         
    ***********************************
 
-BFS 的解法，我们定义二维数组 graph 来表示这个有向图，一维数组 in 来表示每个顶点的入度。我们开始先根据输入来建立这个有向图，并将入度数组也初始化好。
-然后我们定义一个 queue 变量，将所有入度为0的点放入队列中，然后开始遍历队列，从 graph 里遍历其连接的点，每到达一个新节点，将其入度减一，
+BFS 的解法，我们定义二维数组 graph 来表示这个有向图，一维数组 in 来表示每个顶点的入度。我们开始先根据输入来建立这个有向图（edge)，并将入度数组也
+初始化好(degree)。然后我们定义一个 queue 变量，将所有入度为0的点放入队列中，然后开始遍历队列，从 graph 里遍历其连接的点，每到达一个新节点，将其入度减一，
 如果此时该点入度为0，则放入队列末尾。直到遍历完队列中所有的值，若此时还有节点的入度不为0，则说明环存在，返回 false，反之则返回 true
 https://www.jiuzhang.com/solution/course-schedule/#tag-highlight-lang-python
 from collections import deque
@@ -109,15 +110,15 @@ class Solution:
     # @return {boolean} true if can finish all courses or false
     def canFinish(self, numCourses, prerequisites):
         # Write your code here
-        edges = {i: [] for i in range(numCourses)}
-        degrees = [0 for i in range(numCourses)] 
-        for i, j in prerequisites:
+        edges = {i: [] for i in range(numCourses)}  // edge dictionary。key是每个vertex,value 是所有跟它连接的node。用来代表这个图
+        degrees = [0 for i in range(numCourses)] // in degree，代表每个vertex的入度
+        for i, j in prerequisites:  //prerequistites 其实是 i<-j, 用来建立图的每个vertex指向的其他vertex，以及初始化每个vertex的in degree
             edges[j].append(i)
             degrees[i] += 1
             
         queue, count = deque([]), 0
         
-        for i in range(numCourses):
+        for i in range(numCourses): //add all node has zero indgree into the queue
             if degrees[i] == 0:
                 queue.append(i)
 
@@ -125,7 +126,7 @@ class Solution:
             node = queue.popleft()
             count += 1
 
-            for x in edges[node]:
+            for x in edges[node]:         //after minus 1, if the connected vertex has indgree ==0, add into the queue
                 degrees[x] -= 1
                 if degrees[x] == 0:
                     queue.append(x)
