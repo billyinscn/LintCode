@@ -1,3 +1,86 @@
+#jiuzhang summary
+课件及资料
+第 1 节 《如何在一个月内攻破算法面试 How to defeat algorithm interview in one month》
+预习资料
+开课前必读：
+
+新学员常见问题：http://www.jiuzhang.com/qa/3/
+关于错过课程的声明：http://www.jiuzhang.com/qa/2478/ 
+如何跟上课程学习进度： http://www.jiuzhang.com/qa/990/
+请提前练习下面这些题目：
+
+http://www.lintcode.com/problem/valid-palindrome/
+http://www.lintcode.com/problem/strstr/
+http://www.lintcode.com/problem/longest-palindromic-substring/
+先修知识点：
+
+null 与 空字符串的区别：https://stackoverflow.com/questions/16620354/difference-between-null-and-empty-string
+Java 的 String 类基本用法介绍：http://www.runoob.com/java/java-string.html
+Java 的 String.substring 函数：https://beginnersbook.com/2013/12/java-string-substring-method-example/其他语言的同学请自行 Google
+参考资料：Google coding style
+
+https://google.github.io/styleguide/javaguide.html
+
+ 
+
+如何加微信群？如何下载课件？如何查看随课教程？
+
+仅对付费学员开放：请登录官网 www.jiuzhang.com 在右上角”我的课程”中找到所有与课程相关的资料信息。课上不在对此问题做解答。
+
+知识点小视频
+Algorithm - Subsets II
+字符串查找之 Rabin Karp 算法
+第 2 节 《性价比之王的宽度优先搜索 Breadth First Search》
+预习资料
+如何加微信群？如何下载课件？如何查看随课教程？
+请登录官网 www.jiuzhang.com 在右上角”我的课程”中找到所有与课程相关的资料信息。课上不在对此问题做解答。
+
+宽度优先搜索算法（Breadth First Search）是面试中性价比最高的算法。之所以这么说，是因为他所需要的准备时间很短，但是在面试中的出现频率却非常高。其典型的代表问题就是拓扑排序（Topological Sorting）问题。
+ 
+请在随课教程中学习本章节的先修内容：
+http://www.jiuzhang.com/tutorial/algorithm/14
+
+什么是队列，如何自己实现一个队列
+什么是拓扑排序
+如何定义一个图的数据结构
+
+Java 的同学还需要预习：
+
+什么是 Interface，LinkedList 和 Queue 之间的关系是什么？
+其他语言的同学不用预习此内容
+
+知识点小视频
+Algorithm - Search a 2D Matrix II
+Algorithm - 三步翻转法
+第 3 节 《你以为很简单的二分法 Binary Search》
+预习资料
+这节课我们将学习一个看起来是入门级算法，实质上却有很深的坑可以挖的经典算法——二分法。以及其他时间复杂度为 LogN 的一些算法。我们将从四个层级带着大家逐步提升二分法的实力！
+
+请大家前往随课教程中学习如下的一些先修知识，务必提前预习，否则难以跟上学习进度：
+http://www.jiuzhang.com/tutorial/algorithm/3
+
+基本的二分法该如何写
+第一个位置，最后一个位置该如何变化
+Big O，时间复杂度，空间复杂度
+什么是递归，二分法用递归如何实现
+内存中的栈空间和堆空间有什么区别
+什么是 Stack Overflow，什么情况下会造成 Stack Overflow
+知识点小视频
+Quick Select
+第 4 节 《二叉树中的分治法与遍历法 Binary Tree - Divide Conquer & Traverse》
+开课前五天或第四节课以后开放资料和课件
+第 5 节 《不是算法的算法 —— 两根指针 Two Pointers》
+开课前五天或第四节课以后开放资料和课件
+第 6 节 《隐式图深度优先搜索 Implicit Graph DFS》
+开课前五天或第四节课以后开放资料和课件
+第 7 节 《堆与哈希表 Hash & Heap》
+开课前五天或第四节课以后开放资料和课件
+第 8 节 《从记忆化搜索入门动态规划 Memoization Search and Dynamic Programming》
+开课前五天或第四节课以后开放资料和课件
+第 9 节 《动态规划的四要素与坐标型动态规划 4 DP Key Points and Coordinate DP》
+开课前五天或第四节课以后开放资料和课件
+
+
 # LintCode
 
 Home/Ladder/Algorithm
