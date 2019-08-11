@@ -1,0 +1,52 @@
+Description
+
+Implement pow(x, n). (n is an integer.)
+
+You don't need to care about the precision of your answer, it's acceptable if the expected answer and your answer 's difference is smaller than 1e-3.
+
+Have you met this question in a real interview?  
+Example
+Example 1:
+
+Input: x = 9.88023, n = 3
+Output: 964.498
+Example 2:
+
+Input: x = 2.1, n = 3
+Output: 9.261
+Example 3:
+
+Input: x = 1, n = 0
+Output: 1
+
+注意 n 可能是负数, 需要求一下倒数, 可以在一开始把x转换成倒数, 也可以到最后再把结果转换为倒数.
+
+那么现在我们实现 pow(x, n), n 是正整数的版本:
+
+二分即可: 有 x^n = x{n/2} * x{n/2}x 
+n
+ =xn/2∗xn/2, 因此可以在 O(logn) 的时间复杂度内实现.
+
+又叫快速幂. 有递归实现和循环实现的版本.
+
+还可以参考一下 fast power 中的二进制的做法。
+
+#Python2 版本
+class Solution:
+    # @param {double} x the base number
+    # @param {int} n the power number
+    # @return {double} the result
+    def myPow(self, x, n):   #Note:在Python3中整除需使用"//"
+        if n < 0 :
+            x = 1 / x  
+            n = -n
+
+        ans = 1
+        tmp = x
+
+        while n != 0:
+            if n % 2 == 1:
+                ans *= tmp
+            tmp *= tmp
+            n /= 2
+        return ans
