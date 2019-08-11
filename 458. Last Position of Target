@@ -13,3 +13,27 @@ Example 2:
 Input: nums = [1,2,2,4,5,5], target = 6
 Output: -1
 
+****************
+Hints:
+When the target was found, since it asked the last position, we should set start = mid, so that to see whether there is same target
+in the right side of the sorted array.
+***********************
+
+def findLastTarget (sort, array):
+    if array = None:
+      return None
+    start, end = 0, len(array) -1
+    while start < end:
+        mid = start + (end -start )/2
+        if array [mid] < target:
+            start = mid
+        elif array [mid] > target:
+            end = mid
+        else:
+            start = mid
+    if array [start] == target:
+        return start
+    elif array [end]  == target:
+        return end
+    else:
+        return -1
