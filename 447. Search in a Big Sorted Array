@@ -1,0 +1,53 @@
+Description
+
+Given a big sorted array with non-negative integers sorted by non-decreasing order. The array is so big so that you can not get the length
+of the whole array directly, and you can only access the kth number by ArrayReader.get(k) (or ArrayReader->get(k) for C++).
+
+Find the first index of a target number. Your algorithm should be in O(log k), where k is the first index of the target number.
+
+Return -1, if the number doesn't exist in the array.
+
+If you accessed an inaccessible index (outside of the array), ArrayReader.get will return 2,147,483,647.
+
+Example
+Example 1:
+
+Input: [1, 3, 6, 9, 21, ...], target = 3
+Output: 1
+Example 2:
+
+Input: [1, 3, 6, 9, 21, ...], target = 4
+Output: -1
+Challenge
+O(logn) time, n is the first index of the given target number.
+
+二分查找第一个不小于target的元素很简单. 但是需要确定二分区间的范围. 此时还是需要倍增地找到右边界.
+
+初始右边界为1, 如果右边界的数小于 target, 就将其倍增, 直到右边界不小于target.
+
+这时就可以二分查找了.
+
+注意: 越界访问是没有关系的, 因为这个ArrayReader在越界访问时, 返回 INT_MAX, 一定不小于 target. 而即使是返回 -1 之类的数值, 我们也可以加一个判断搞定.
+
+class Solution:
+    """
+    @param: reader: An instance of ArrayReader.
+    @param: target: An integer
+    @return: An integer which is the first index of target.
+    """
+    def searchBigSortedArray(self, reader, target):
+        l, r = 0, 1
+        while reader.get(r) < target:
+            r <<= 1
+        
+        while (l < r):
+            mid = (l + r) >> 1
+            if reader.get(mid) >= target:
+                r = mid
+            else:
+                l = mid + 1
+        
+        if reader.get(l) == target:
+            return l
+        else:
+            return -1
