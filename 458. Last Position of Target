@@ -19,8 +19,8 @@ When the target was found, since it asked the last position, we should set start
 in the right side of the sorted array.
 ***********************
 
-def findLastTarget (sort, array):
-    if array = None:
+def findLastTarget (sort, array, target):
+    if not array or target == None:
       return None
     start, end = 0, len(array) -1
     while start < end:
