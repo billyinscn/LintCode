@@ -11,10 +11,26 @@ Example 2:
 
 Input: nums = [10, 9, 8, 7], 
 Output: 10
-
+************************************************
 二分法。
-这个数组是先升序后降序的。所以在任何一点劈开，包含顶点的那一半一定还是一个先升序后降序的数组。
-那么每次劈开后我们只要判断这个包含顶点的一半是在左边还是右边，以此来更新start或者end的位置。
+思路：OOXX， 找OX的peak，用eitherOO or XX作为条件来判断二分。
+
+peak左边的特点是A[i] > A[i-1]， 右边的特点是A[i] > A[i+1]，我们可以用任意一个条件来判断。丢掉不符合条件的一半。
 最后剩下start和end两个index， 高的那个是mountain top。
+**************************************************
+
+def mountainPeak (self, nums):
+    if nums == None:
+       return None
+    start, end = 0, len(nums)
+    while start + 1 < end:
+      mid = (start + end ) // 2
+      // use A[i] > A[i+1] as the determine creteria
+      if nums [mid] > nums [mid+1]:
+          end = mid
+      else:
+          start = mid
+    return max [num[start], nums[end])
+
 
 
