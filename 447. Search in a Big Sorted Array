@@ -28,26 +28,24 @@ O(logn) time, n is the first index of the given target number.
 这时就可以二分查找了.
 
 注意: 越界访问是没有关系的, 因为这个ArrayReader在越界访问时, 返回 INT_MAX, 一定不小于 target. 而即使是返回 -1 之类的数值, 我们也可以加一个判断搞定.
-
 class Solution:
-    """
-    @param: reader: An instance of ArrayReader.
-    @param: target: An integer
-    @return: An integer which is the first index of target.
-    """
+    # @param {ArrayReader} reader: An instance of ArrayReader
+    # @param {int} target an integer
+    # @return {int} an integer
     def searchBigSortedArray(self, reader, target):
-        l, r = 0, 1
-        while reader.get(r) < target:
-            r <<= 1
-        
-        while (l < r):
-            mid = (l + r) >> 1
-            if reader.get(mid) >= target:
-                r = mid
+        # write your code here
+        index = 0
+        while reader.get(index) <= target:
+            index = index * 2 + 1
+        start, end = 0, index
+        while start + 1 < end:
+            mid = start + (end - start) // 2
+            if reader.get(mid) < target:
+                start = mid
             else:
-                l = mid + 1
-        
-        if reader.get(l) == target:
-            return l
-        else:
-            return -1
+                end = mid
+        if reader.get(start) == target:
+            return start
+        if reader.get(end) == target:
+            return end
+        return -1
