@@ -1,0 +1,13 @@
+https://blog.csdn.net/xlinsist/article/details/79198842
+
+
+1.划分问题：将序列分成元素个数尽可能相等的两半。
+
+2.递归求解：分别求出位于左半和右半的最佳序列。
+
+3.合并问题：求出起点位于左半，终点位于右半的最大连续和序列，和子问题最优解比较。
+
+https://zhuanlan.zhihu.com/p/45986027
+
+
+https://www.youtube.com/watch?v=x78uQu730b0
