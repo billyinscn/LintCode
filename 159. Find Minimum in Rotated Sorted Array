@@ -24,32 +24,20 @@ Explanation：
 The minimum value in an array is 1.
 
 ***********************************************
-使用target记录数组最右端的数字，然后用start和end标志寻找区间，如果mid位置上的数字小于等于最右端的数字时，区间向左移动，其余向右移动即可，
-返回start和end位置上较小值即可。
+其实就是画两条线，一个是4-7 上升曲线，一个是0-2 上升曲线。
+str【mid】和str[end]比，如果大，说明在上半条曲线，就把右移
+如果小，就在下半曲线，就左移。最后返回min of A[start] and A[end]
 **********************************************
-public class Solution {
-    /**
-     * @param nums: a rotated sorted array
-     * @return: the minimum number in the array
-     */
-    public int findMin(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return -1;
-        }
-        
-        int start = 0, end = nums.length - 1;
-        int target = nums[nums.length - 1];
-        
-        // find the first element <= target
-        while (start + 1 < end) {    		//用来控制区间大小
-            int mid = start + (end - start) / 2;
-            if (nums[mid] <= target) { 		//如果mid位置上的数字小于等于最右端的数字时，区间向左移动
-                end = mid;
-            } else {
-                start = mid;			 
-            }
-        }
-        return Math.min(nums[start],nums[end]);  //最终返回start和end位置上较小的数字即可
-        
-    }
-}
+
+ def ReturnMin (self, A):
+    if A == None:
+        return -1
+    start, end = 0, len(A) -1
+    while start + 1< end:
+        mid = (end-start)//2
+        if A[mid] > A[end]:
+            start = mid
+        else:
+             end = mid
+       
+    return min (A[end], A[start])
