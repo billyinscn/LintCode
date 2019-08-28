@@ -1,12 +1,9 @@
-Description
-中文
-English
+
 Given a non-empty binary search tree and a target value, find the value in the BST that is closest to the target.
 
 Given target value is a floating point.
 You are guaranteed to have only one unique value in the BST that is closest to the target.
-Have you met this question in a real interview?  
-Example
+
 Example1
 
 Input: root = {5,4,9,2,#,8,10} and target = 6.124780
@@ -34,31 +31,16 @@ Binary tree {3,2,4,1},  denote the following structure:
 算法很简单，求出 lowerBound 和 upperBound。即 < target 的最大值和 >= target 的最小值。
 然后在两者之中去比较谁更接近，然后返回即可。
 
-时间复杂度为 O(h)O(h)，注意如果你使用 in-order traversal 的化，时间复杂度会是 o(n)o(n) 并不是最优的。另外复杂度也不是 O(logn)O(logn) 因为BST 并不保证树高是 logn 的。
+时间复杂度为 O(h)O(h)，注意如果你使用 in-order traversal 的化，时间复杂度会是 o(n)o(n) 并不是最优的。另外复杂度也不是 O(logn)O(logn) 因为BST 并
+不保证树高是 logn 的。
 
 根据target的值与当前root.val的大小找到最接近target的两个值
 
 *************************************8
 
-资料修改
-重置密码
-优惠劵
-登出
- 二叉搜索树中最接近的值 · Closest Binary Search Tree Value
-输入题目名称，如Count and say
-给一棵非空二叉搜索树以及一个target值，找到在BST中最接近给定值的节点值
-
-在线评测地址: http://www.lintcode.com/problem/closest-binary-search-tree-value/
-Boolean
-更新于 8/4/2019, 4:23:42 AM
 非递归的版本
 根据target的值与当前root.val的大小找到最接近target的两个值
 
-# 本参考程序来自九章算法，由 @Boolean 提供。版权所有，转发请注明出处。
-# - 九章算法致力于帮助更多中国人找到好的工作，教师团队均来自硅谷和国内的一线大公司在职工程师。
-# - 现有的面试培训课程包括：九章算法班，系统设计班，算法强化班，Java入门与基础算法班，Android 项目实战班，
-# - Big Data 项目实战班，算法面试高频题班, 动态规划专题班
-# - 更多详情请见官方网站：http://www.jiuzhang.com/?source=code
 
 
 """
