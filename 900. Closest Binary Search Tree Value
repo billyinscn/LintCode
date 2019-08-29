@@ -28,7 +28,12 @@ Binary tree {3,2,4,1},  denote the following structure:
 1
 
 **************************************
-算法很简单，求出 lowerBound 和 upperBound。即 < target 的最大值和 >= target 的最小值。
+实际我们可以利用二分搜索树的特点(左<根<右)来快速定位，由于根节点是中间值，我们在往下遍历时，我们根据目标值和根节点的值大小关系来比较，
+如果目节点值大于target，则我们应该找更小的值，于是我们到左子树去找，反之我们去右子树找，参见代码如下：
+
+求出 lowerBound 和 upperBound。即 < target 的最大值和 >= target 的最小值。
+low = < target 的最大值
+upper = >= target 的最小值
 然后在两者之中去比较谁更接近，然后返回即可。
 
 时间复杂度为 O(h)O(h)，注意如果你使用 in-order traversal 的化，时间复杂度会是 o(n)o(n) 并不是最优的。另外复杂度也不是 O(logn)O(logn) 因为BST 并
