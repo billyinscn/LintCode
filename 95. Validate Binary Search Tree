@@ -1,0 +1,62 @@
+Description
+中文
+English
+Given a binary tree, determine if it is a valid binary search tree (BST).
+
+Assume a BST is defined as follows:
+
+The left subtree of a node contains only nodes with keys less than the node's key.
+The right subtree of a node contains only nodes with keys greater than the node's key.
+Both the left and right subtrees must also be binary search trees.
+A single node tree is a BST
+
+*********************
+
+这是我觉得最直接了当、简洁易懂的方法：
+
+1. 先top-down递归，由父节点来传递子节点的值所允许的范围minVal < x->val < maxVal。如果该条件不符合，返回false。
+
+2. 如果上述条件符合，只说明当前节点x本身符合BST条件。还需要bottom-up递归来检查当前节点的左右子树是否也都符合BST条件。左子树的取值范围为(minVal, x->val)，右子树取值范围为(x->val, maxVal)。
+
+
+class Solution {
+public:
+    bool isValidBST(TreeNode *root) {
+        return validateBST(root, INT_MIN, INT_MAX);
+    }
+    
+    bool validateBST(TreeNode *root, int minVal, int maxVal) {
+        if(!root) return true;
+        if(root->val<=minVal || root->val>=maxVal) return false;
+        return validateBST(root->left, minVal, root->val) && validateBST(root->right, root->val, maxVal);
+    }
+};
+
+***********************
+
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        this.val = val
+        this.left, this.right = None, None
+"""
+
+
+class Solution:
+    """
+    @param root: The root of binary tree.
+    @return: True if the binary tree is BST, or false
+    """
+    def isValidBST(self, root):
+        return validate (root, sys.
+
+    def validate(self, root):
+        if root is None:
+            return
+        self.validate(root.left)
+        if self.lastVal is not None and self.lastVal >= root.val:
+            self.isBST = False
+            return
+        self.lastVal = root.val
+        self.validate(root.right)
