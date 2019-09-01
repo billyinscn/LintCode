@@ -1,0 +1,109 @@
+Description
+中文
+English
+Given the root and two nodes in a Binary Tree. Find the lowest common ancestor(LCA) of the two nodes.
+The lowest common ancestor is the node with largest depth which is the ancestor of both nodes.
+Return null if LCA does not exist.
+
+node A or node B may not exist in tree.
+Each node has a different value
+
+Have you met this question in a real interview?  
+Example
+Example1
+
+Input: 
+{4, 3, 7, #, #, 5, 6}
+3 5
+5 6
+6 7 
+5 8
+Output: 
+4
+7
+7
+null
+Explanation:
+  4
+ / \
+3   7
+   / \
+  5   6
+
+LCA(3, 5) = 4
+LCA(5, 6) = 7
+LCA(6, 7) = 7
+LCA(5, 8) = null
+
+Example2
+
+Input:
+{1}
+1 1
+Output: 
+1
+Explanation:
+The tree is just a node, whose value is 1.
+
+*********************************
+
+用分治法。
+1：如果A或B在root上，那么LCA就在root上。
+2：如果左子树和右子树都有LCA，那么也说明当前LCA在root上。
+3：如果只有左边有LCA，那么LCA就在左边。
+4：如果只有右边有LCA，那么LCA就在右边。
+
+********************************
+
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        this.val = val
+        this.left, this.right = None, None
+"""
+import copy
+class Solution:
+    """
+    @param {TreeNode} root The root of the binary tree.
+    @param {TreeNode} A and {TreeNode} B two nodes
+    @return Return the LCA of the two nodes.
+    """ 
+    def lowestCommonAncestor3(self, root, A, B):
+        # only if both A and B exit in the tree, there is LCA
+        a, b, lca = self.helper(root, A, B)
+        if a and b:
+            return lca
+        else:
+            return None
+
+    def helper(self, root, A, B):
+        # return: a_exit, b_exit, lca
+        if root is None:
+            return False, False, None
+        # divide and conquer    
+        left_a, left_b, left_node = self.helper(root.left, A, B)
+        right_a, right_b, right_node = self.helper(root.right, A, B)
+        
+        #since node A or node B may not exist in tree, we need to determine whether A and B exist in the 🌳 
+        #boolean a_exist = left.a_exist || right.a_exist || A == root;
+        #boolean b_exist = left.b_exist || right.b_exist || B == root;
+        a = left_a or right_a or root == A
+        b = left_b or right_b or root == B
+        
+        # further determination
+        "1：如果A或B在root上，那么LCA就在root上。
+        "2：如果左子树和右子树都有LCA，那么也说明当前LCA在root上。
+        "3：如果只有左边有LCA，那么LCA就在左边。
+        "4：如果只有右边有LCA，那么LCA就在右边。
+        if root == A or root == B:
+            return a, b, root
+
+        if left_node is not None and right_node is not None:
+            return a, b, root
+        if left_node is not None:
+            return a, b, left_node
+        if right_node is not None:
+            return a, b, right_node
+
+        return a, b, None
