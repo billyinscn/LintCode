@@ -42,18 +42,17 @@ class TreeNode:
         this.left, this.right = None, None
 """
 
-
 class Solution:
     """
     @param root: The root of binary tree.
     @return: True if the binary tree is BST, or false
     """
     def isValidBST(self, root):
-        return validate (root, sys.minsize, sys.maxsize)
+        return self.validate (root, -sys.maxsize, sys.maxsize)
 
     def validate(self, root, min, max):
         if root is None:
             return True
         if root.val <= min or root.val>=max:
             return False
-        return validate (root.left, min, root.val) and validate (root.right, root.val, max)
+        return self.validate (root.left, min, root.val) and self.validate (root.right, root.val, max)
