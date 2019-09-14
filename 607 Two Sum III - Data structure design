@@ -19,4 +19,33 @@ find(7) // return false
 本题一个主要的问题就是有可能有重复元素, 即如果要查找的值如6, 可能由3+3构成, 这样如果你只有一个3是无法构成6的, 因此要对元素的个数进行记录并判断.
 
 
-class 
+class TwoSum(object):
+
+    def __init__(self):
+        # initialize your data structure here
+        self.dic = {}
+        
+
+    # Add the number to an internal data structure.
+    # @param number {int}
+    # @return nothing
+    def add(self, number):
+        # Write your code here
+        if number in self.dic:
+            self.dic[number] += 1
+        else:
+            self.dic[number] = 1
+
+        
+
+    # Find if there exists any pair of numbers which sum is equal to the value.
+    # @param value {int}
+    # @return true if can be found or false
+    def find(self, value):
+        # Write your code here
+        for num in self.dic:
+            if value - num in self.dic and \
+                (value - num != num or self.dic[num] > 1):
+                return True
+        return False
+        
