@@ -51,6 +51,7 @@ class Solution:
 
         # bfs
         order = []
+        ”start_nodes 为所有入度为0的node
         start_nodes = [n for n in graph if node_to_indegree[n] == 0]
         queue = collections.deque(start_nodes)
         while queue:
@@ -64,8 +65,9 @@ class Solution:
         return order
     
     def get_indegree(self, graph):
+        "把node_to_indegree作为dic先全部赋值为零
         node_to_indegree = {x: 0 for x in graph}
-
+        “有向图的node，全部是指向它的邻居的，所以站在邻居的角度，都应该加1.最后得到的就是所有node的in degree值
         for node in graph:
             for neighbor in node.neighbors:
                 node_to_indegree[neighbor] += 1
