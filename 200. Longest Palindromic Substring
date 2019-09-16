@@ -31,26 +31,30 @@ O(n2) time is acceptable. Can you do it in O(n) time
 //现在先不管
 ***/
 
+class Solution:
+    """
+    @param s: input string
+    @return: the longest palindromic substring
+    """
+    def longestPalindrome(self, s):
+        if s == None:
+            return ""
+        l_sub = ""
+        for pos in range (len(s)):
+            sub = self.logestpal (s, pos, pos)
+            if len(sub) > len(l_sub):
+                l_sub =  sub
+            sub = self.logestpal (s, pos, pos+1)
+            if len(sub) > len(l_sub):
+                l_sub =  sub
+        return l_sub
+    
+    def logestpal(self, s, left, right):
 
-def findLongestPalindromicSub(self, s):
-    LongestPal = ""
-    if s==None or len(s) ==0:
-        return LongestPal
-    for middle in range (len(s)):
-        sub = self.returnPalindromicFrom (s, middle, middle)
-        if  len(sub) > len(LongestPal):
-             LongestPal = sub
-        sub = self.returnPalindromicFrom (s, middle, middle+1)
-        if  len(sub) > len(LongestPal):
-             LongestPal = sub   
-    return longestPal
-
-def returnPalindromicFrom (self, s, left, right):
-    left, right = len(s)/2
-    while left >= 0 and  right < len(s) and s[left] == s[right]:
-        left -= 1
-        right +=1 
-    return s[left:right+1]
+        while left >=0 and right < len(s) and s[left] == s[right]:
+            left -= 1
+            right += 1
+        return s[left+1: right]
         
     
 
