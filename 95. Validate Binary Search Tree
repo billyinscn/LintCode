@@ -16,7 +16,8 @@ A single node tree is a BST
 
 1. 先top-down递归，由父节点来传递子节点的值所允许的范围minVal < x->val < maxVal。如果该条件不符合，返回false。
 
-2. 如果上述条件符合，只说明当前节点x本身符合BST条件。还需要bottom-up递归来检查当前节点的左右子树是否也都符合BST条件。左子树的取值范围为(minVal, x->val)，右子树取值范围为(x->val, maxVal)。
+2. 如果上述条件符合，只说明当前节点x本身符合BST条件。还需要bottom-up递归来检查当前节点的左右子树是否也都符合BST条件。左子树的取值范围为
+(minVal, x->val)，右子树取值范围为(x->val, maxVal)。
 
 
 class Solution {
